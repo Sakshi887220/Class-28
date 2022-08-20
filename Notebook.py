@@ -7,36 +7,19 @@ from tkinter import *
 # Part 1 Creating a simple Database
 
 # connecting to the database  
-connection = sqlite3.connect("myTable.db") 
-  
-# cursor  
-crsr = connection.cursor() 
-  
-# SQL command to create a table in the database 
-sql_command = """CREATE TABLE emp (  
-staff_number INTEGER PRIMARY KEY,  
-fname VARCHAR(20),  
-lname VARCHAR(30),  
-gender text,  
-joining text);"""
-  
-# execute the statement 
-crsr.execute(sql_command) 
-  
+
 # SQL command to insert the data in the table 
-sql_command = """INSERT INTO emp VALUES (21, "Arpit", "Bansal", "M", "2014-03-28");"""
-crsr.execute(sql_command) 
+
   
 # another SQL command to insert the data in the table 
-sql_command = """INSERT INTO emp VALUES (1, "Bill", "Gates", "M", "1980-10-28");"""
-crsr.execute(sql_command) 
+
   
 # To save the changes in the files. Never skip this.  
 # If we skip this, nothing will be saved in the database. 
-connection.commit() 
+
   
 # close the connection 
-connection.close() 
+
 
 # Part 2 Creating a interface for entering values to our database.
 # Create a submit function
@@ -46,32 +29,16 @@ def Submit():
     # cursor  
     crsr = connection.cursor() 
     # Insert Into Table
-    crsr.execute("INSERT INTO emp VALUES (:Staffno,  :f_name , :l_name , :Gender , :DOJi)",
-        {
-            'Staffno' : Staffno.get(),
-            'f_name' : f_name.get(),
-            'l_name' : l_name.get(),
-            'Gender' : Gender.get(),
-            'DOJi' : DOJi.get()
-        }
-    )
-    connection.commit() # Commit all the changes to the database
-    connection.close() 
-    # Clear the Text Boxes
-    Staffno.delete(0 ,END)
-    f_name.delete(0 ,END)
-    l_name.delete(0 ,END)
-    Gender.delete(0 ,END)
-    DOJi.delete(0 ,END)
+    
 def Query():
     # connecting to the database  
     connection = sqlite3.connect("myTable.db") 
     # cursor  
     crsr = connection.cursor() 
     # Insert Into Table
-    crsr.execute("SELECT *,oid FROM emp")  
+     
     # store all the fetched data in the ans variable 
-    ans = crsr.fetchall()  
+   
     # Since we have already selected all the data entries  
     # using the "SELECT *" SQL command and stored them in  
     # the ans variable, all we need to do now is to print  
